@@ -20,4 +20,5 @@ It uses Graph Algorithms to detect "Circular Money Laundering" patterns in finan
 The API prevents "Round Tripping" (A -> B -> C -> A) by checking for cycles in the graph before approving a transaction.
 
 ## SideNote
-This is my first mini project trying to use fastapi and neo4j for an actual application.
+This is my first mini project trying to use FastAPI and Neo4j for an actual application.
+

@@ -3,7 +3,7 @@ from config import get_db
 def setup_scenario():
     driver = get_db()
 
-    query = """
+    money_query = """
     MERGE(a:User {name: "Alpha"})
     MERGE(b:User {name: "Beta"})
     MERGE(c:User {name: "Gamma"})
@@ -19,9 +19,25 @@ def setup_scenario():
     MERGE (acc1)-[:TRANSFERRED]->(acc2)
     MERGE (acc2)-[:TRANSFERRED]->(acc3)
     """
+
+    device_query = """
+    MATCH(a:User {name: "Alpha"})
+    MATCH(b:User {name: "Beta"})
+    MATCH(c:User {name: "Gamma"})
+    
+    MERGE (iphone: Phone {id: "IPhone_14" , ip: "190.072.441.1000"})
+    MERGE (redmi: Phone {id: "Redmi_Note17", ip: "110.450.089.3000"})
+    
+    MERGE (a)-[:USED_DEVICE]->(iphone)
+    MERGE (b)-[:USED_DEVICE]->(iphone)
+    MERGE (c)-[:USED_DEVICE]->(redmi)
+    
+    """
     with driver.session() as session:
-        session.run(query)
+        session.run(money_query)
         print("Data Seeded. The trap has been set.")
+        session.run(device_query)
+        print("Device Data Successfully Seeded.")
 
 if __name__ == "__main__":
     setup_scenario()

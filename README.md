@@ -5,6 +5,7 @@ It uses Graph Algorithms to detect "Circular Money Laundering" patterns in finan
 
 ## 🚀 Tech Stack
 * **Python 3.10+**
+* **StreamLit** (Clean Frontend For Demonstration) 
 * **FastAPI** (High-performance API)
 * **Neo4j** (Graph Database for relationship analysis)
 
@@ -14,10 +15,12 @@ It uses Graph Algorithms to detect "Circular Money Laundering" patterns in finan
     * Rename `config_example.py` to `config.py` and update the password.
 3.  **Seed Data:** `python seed.py`
 4.  **Start Server:** `uvicorn main:app --reload`
-5.  **Test API:** Go to `http://127.0.0.1:8000/docs`
+5.  **Start Frontend Application:** `streamlit run frontend.py`
+6.  **Test API:** Go to `http://localhost:8501`
 
 ## 🧠 Logic
-The API prevents "Round Tripping" (A -> B -> C -> A) by checking for cycles in the graph before approving a transaction.
+The API prevents "Round Tripping" (A -> B -> C -> A) by checking for cycles in the graph and "Identity Fraud" by checking whether the sender and reciever
+accounts operate from the same device, before approving a transaction.
 
 ## SideNote
 This is my first mini project trying to use FastAPI and Neo4j for an actual application.
